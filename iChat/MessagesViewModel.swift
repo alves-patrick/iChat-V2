@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import FirebaseAuth
+
+class MessagesViewModel: ObservableObject {
+    
+    func logout() {
+        try? Auth.auth().signOut()
+    }
+}

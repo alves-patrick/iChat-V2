@@ -8,11 +8,40 @@
 import SwiftUI
 
 struct ContactsView: View {
+    
+    @ObservedObject var viewModel = ContactsViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            List(viewModel.contacts, id: \.self) { contact in
+               ContactRow(contact: contact)
+                
+                // Text("Nome do contato: \(contact.name)")
+                
+            }
+            
+        }.onAppear {
+            viewModel.getContacts()
+        }
     }
 }
 
-#Preview {
-    ContactsView()
+struct ContactRow: View {
+    var contact: Contact
+    var body: some View {
+        HStack {
+            AsyncImage(url: URL(string: contact.profileUrl)) { image in
+                image.resizable()
+                    .scaledToFit()
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(width:50, height: 50)
+            Text(contact.name)
+        }
+    }
 }
+    #Preview {
+        ContactsView()
+    }
+
