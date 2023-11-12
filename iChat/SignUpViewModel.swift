@@ -68,14 +68,14 @@ class SignUpViewModel: ObservableObject {
                 self.isLoading = false
                 guard let url = url else { return }
                 print("foto criada \(url)")
-                self.createUser(photoUrl: url)
+              //  self.createUser(photoUrl: url)
             }
             
         }
     }
-    private func createUser(photoUrl: URL) {
-        Firestore.firestore().collection(<#T##collectionPath: String##String#>)
+  //  private func createUser(photoUrl: URL) {
+   //     Firestore.firestore().collection(<#T##collectionPath: String##String#>)
         
         
-    }
+   // }
 }
