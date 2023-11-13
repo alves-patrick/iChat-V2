@@ -15,6 +15,9 @@
 		7D39B97C2B010A6C007E0CF0 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B97B2B010A6C007E0CF0 /* ContactsView.swift */; };
 		7D39B97E2B010ADE007E0CF0 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B97D2B010ADE007E0CF0 /* ContactsViewModel.swift */; };
 		7D39B9802B010B60007E0CF0 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B97F2B010B60007E0CF0 /* Contact.swift */; };
+		7D39B9822B013D8D007E0CF0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B9812B013D8D007E0CF0 /* Message.swift */; };
+		7D39B9842B013DEB007E0CF0 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B9832B013DEB007E0CF0 /* ChatViewModel.swift */; };
+		7D39B9862B01407E007E0CF0 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B9852B01407E007E0CF0 /* ChatView.swift */; };
 		7D5F94422AFFB78300590743 /* iChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5F94412AFFB78300590743 /* iChatApp.swift */; };
 		7D5F94442AFFB78300590743 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5F94432AFFB78300590743 /* SignInView.swift */; };
 		7D5F94462AFFB78500590743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D5F94452AFFB78500590743 /* Assets.xcassets */; };
@@ -37,6 +40,9 @@
 		7D39B97B2B010A6C007E0CF0 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		7D39B97D2B010ADE007E0CF0 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		7D39B97F2B010B60007E0CF0 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		7D39B9812B013D8D007E0CF0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		7D39B9832B013DEB007E0CF0 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		7D39B9852B01407E007E0CF0 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		7D5F943E2AFFB78300590743 /* iChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D5F94412AFFB78300590743 /* iChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iChatApp.swift; sourceTree = "<group>"; };
 		7D5F94432AFFB78300590743 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -106,6 +112,9 @@
 				7D39B97B2B010A6C007E0CF0 /* ContactsView.swift */,
 				7D39B97D2B010ADE007E0CF0 /* ContactsViewModel.swift */,
 				7D39B97F2B010B60007E0CF0 /* Contact.swift */,
+				7D39B9812B013D8D007E0CF0 /* Message.swift */,
+				7D39B9832B013DEB007E0CF0 /* ChatViewModel.swift */,
+				7D39B9852B01407E007E0CF0 /* ChatView.swift */,
 			);
 			path = iChat;
 			sourceTree = "<group>";
@@ -246,6 +255,7 @@
 				7D39B9762B00FEEF007E0CF0 /* ContentViewModel.swift in Sources */,
 				7D39B97E2B010ADE007E0CF0 /* ContactsViewModel.swift in Sources */,
 				7D5F94442AFFB78300590743 /* SignInView.swift in Sources */,
+				7D39B9862B01407E007E0CF0 /* ChatView.swift in Sources */,
 				7D39B97A2B0103A0007E0CF0 /* MessagesViewModel.swift in Sources */,
 				7D39B9782B010326007E0CF0 /* MessagesView.swift in Sources */,
 				7D5F94422AFFB78300590743 /* iChatApp.swift in Sources */,
@@ -255,6 +265,8 @@
 				7D5F94522AFFC15100590743 /* SignUpView.swift in Sources */,
 				7D39B97C2B010A6C007E0CF0 /* ContactsView.swift in Sources */,
 				7D5F94502AFFBB3200590743 /* SignInViewModel.swift in Sources */,
+				7D39B9842B013DEB007E0CF0 /* ChatViewModel.swift in Sources */,
+				7D39B9822B013D8D007E0CF0 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

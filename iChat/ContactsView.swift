@@ -13,16 +13,20 @@ struct ContactsView: View {
     
     var body: some View {
         VStack {
-            List(viewModel.contacts, id: \.self) { contact in
-               ContactRow(contact: contact)
-                
-                // Text("Nome do contato: \(contact.name)")
-                
+            if viewModel.isLoading {
+                ProgressView()
             }
-            
+            List(viewModel.contacts, id: \.self) { contact in
+                NavigationLink {
+                    ChatView(toId: contact.uuid, username: contact.name)
+                } label: {
+                    ContactRow(contact: contact)
+                }
+            }
         }.onAppear {
             viewModel.getContacts()
         }
+        .navigationTitle("Contatos")
     }
 }
 
