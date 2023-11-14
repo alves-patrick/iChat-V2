@@ -16,12 +16,12 @@ class ChatViewModel: ObservableObject {
     
     @Published var text = ""
     
-    func onAppear(toId: String) {
+    func onAppear(contact: Contact) {
         let fromId = Auth.auth().currentUser!.uid
         
         Firestore.firestore().collection("conversations")
             .document(fromId)
-            .collection(toId)
+            .collection(contact.uuid)
             .order(by: "timestamp", descending: false)
             .addSnapshotListener{ querySnapshot, error in
                 if let error = error {
@@ -43,18 +43,18 @@ class ChatViewModel: ObservableObject {
             }
     }
     
-    func sendMessage(toId: String) {
+    func sendMessage(contact: Contact) {
         
         let fromId = Auth.auth().currentUser!.uid
         let timestamp = Date().timeIntervalSince1970
         
         Firestore.firestore().collection("conversations")
             .document(fromId)
-            .collection(toId)
+            .collection(contact.uuid)
             .addDocument(data: [
                 "text": text,
                 "fromId": fromId,
-                "toId": toId,
+                "toId": contact.uuid,
                 "timestamp": UInt(timestamp)
             ]) { err in
                 if err != nil {
@@ -64,12 +64,12 @@ class ChatViewModel: ObservableObject {
                 }
             }
         Firestore.firestore().collection("conversations")
-            .document(toId)
+            .document(contact.uuid)
             .collection(fromId)
             .addDocument(data: [
                 "text": text,
                 "fromId": fromId,
-                "toId": toId,
+                "toId": contact.uuid,
                 "timestamp": UInt(timestamp)
             ]) { err in
                 if err != nil {
