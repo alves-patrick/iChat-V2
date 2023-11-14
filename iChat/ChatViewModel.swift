@@ -16,8 +16,25 @@ class ChatViewModel: ObservableObject {
     
     @Published var text = ""
     
+    var myName = ""
+    var myPhoto = ""
+    
     func onAppear(contact: Contact) {
         let fromId = Auth.auth().currentUser!.uid
+        
+        Firestore.firestore().collection("users")
+            .document(fromId)
+            .getDocument { snapshot, error in
+                if let error = error {
+                    print("ERROR: fetching documents \(error)")
+                    return
+                }
+                
+                if let document = snapshot?.data() {
+                    self.myName = document["name"] as! String
+                    self.myPhoto = document["profileUrl"] as! String
+                }
+            }
         
         Firestore.firestore().collection("conversations")
             .document(fromId)
@@ -62,6 +79,18 @@ class ChatViewModel: ObservableObject {
                     return
                     
                 }
+                
+                Firestore.firestore().collection("last-messages")
+                    .document(fromId)
+                    .collection("contacts")
+                    .document(contact.uuid)
+                    .setData([
+                        "uid": contact.uuid,
+                        "username": contact.name,
+                        "photoUrl": contact.profileUrl,
+                        "timestamp": UInt(timestamp),
+                        "lastMessage": self.text
+                    ])
             }
         Firestore.firestore().collection("conversations")
             .document(contact.uuid)
@@ -77,6 +106,17 @@ class ChatViewModel: ObservableObject {
                     return
                     
                 }
+                Firestore.firestore().collection("last-messages")
+                    .document(contact.uuid)
+                    .collection("contacts")
+                    .document(fromId)
+                    .setData([
+                        "uid": fromId,
+                        "username": self.myName,
+                        "photoUrl": self.myPhoto,
+                        "timestamp": UInt(timestamp),
+                        "lastMessage": self.text
+                    ])
             }
         
     }

@@ -30,10 +30,32 @@ struct MessagesView: View {
                     }
                 }
             }
-            
+        }
     }
 }
+
+struct ContactMessageRow: View {
+    var contact: Contact
+    var body: some View {
+        HStack {
+            AsyncImage(url: URL(string: contact.profileUrl)) { image in
+                image.resizable()
+                    .scaledToFit()
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(width:50, height: 50)
+            
+            VStack (alignment: .leading) {
+                Text(contact.name)
+                if let msg = contact.lastMessage {
+                    Text(msg)
+                }
+            }
+            Spacer()
+        }
     }
+}
 
 #Preview {
     MessagesView()
