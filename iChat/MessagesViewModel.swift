@@ -17,7 +17,28 @@ class MessagesViewModel: ObservableObject {
     
     func getContacts() {
         let fromId = Auth.auth().currentUser!.uid
-        Firestore.firestore()
+        Firestore.firestore().collection("last-messages")
+            .document(fromId)
+            .collection("contacts")
+            .addSnapshotListener { snapshot, error in
+                if let changes = snapshot?.documentChanges {
+                    for doc in changes {
+                        if doc.type == .added {
+                            let document = doc.document
+                            
+                            self.contacts.removeAll()
+                            self.contacts.append(Contact(uuid: document.documentID,
+                                                         name: document.data()["username"] as! String,
+                                                         profileUrl: document.data()["photoUrl"] as! String,
+                                                         lastMessage: document.data()["lastmessage"] as? String,
+                                                         timestamp: document.data()["timestamp"] as? UInt))
+                        }
+                    }
+                }
+                
+                
+            }
+        
     }
     
     func logout() {
