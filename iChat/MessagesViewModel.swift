@@ -32,14 +32,11 @@ class MessagesViewModel: ObservableObject {
                                                          profileUrl: document.data()["photoUrl"] as! String,
                                                          lastMessage: document.data()["lastmessage"] as? String,
                                                          timestamp: document.data()["timestamp"] as? UInt))
-                        }
-                    }
-                }
-                
-                
-            }
-        
-    }
+                          }
+                      }
+                  }
+              }
+          }
     
     func logout() {
         try? Auth.auth().signOut()
