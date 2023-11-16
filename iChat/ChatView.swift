@@ -15,7 +15,7 @@ struct ChatView: View {
     @StateObject var viewModel = ChatViewModel()
     
     @State var textSize: CGSize = .zero
-
+    
     var body: some View {
         VStack {
             ScrollView(showsIndicators: false) {
@@ -26,17 +26,19 @@ struct ChatView: View {
             Spacer()
             
             HStack {
-                ZStack{
-                TextEditor(text: $viewModel.text)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(24.0)
-                    .overlay(RoundedRectangle(cornerRadius: 24.0)
-                        .strokeBorder(Color(UIColor.separator), style: StrokeStyle(lineWidth: 1.0))
-                    )
-                    .frame(maxWidth: (textSize.height + 50) > 100 ? 100 : textSize.height + 50)
+                ZStack {
+                    TextEditor(text: $viewModel.text)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(24.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 24.0)
+                                .strokeBorder(Color(UIColor.separator), style: StrokeStyle(lineWidth: 1.0))
+                        )
+                        .frame(maxHeight: (textSize.height + 50) > 100 ? 100 : textSize.height + 50)
+                    
                     Text(viewModel.text)
                         .opacity(0)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -47,38 +49,36 @@ struct ChatView: View {
                         .onPreferenceChange(ViewSizeKey.self) { size in
                             print("textSize is \(size)")
                             textSize = size
-                            
                         }
-            }
-                Button {
-                    viewModel.sendMessage(contact: contact)
-                } label: {
-                    Text("Enviar")
-                        .padding()
-                        .background(Color("GreenColor"))
-                        .foregroundColor(Color.white)
-                        .cornerRadius(24.0)
                 }
-                .disabled(viewModel.text.isEmpty)
+                    Button {
+                        viewModel.sendMessage(contact: contact)
+                    } label: {
+                        Text("Enviar")
+                            .padding()
+                            .background(Color("GreenColor"))
+                            .foregroundColor(Color.white)
+                            .cornerRadius(24.0)
+                    }
+                    .disabled(viewModel.text.isEmpty)
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal, 16)
+                
             }
-            .padding(.vertical, 10)
-            .padding(.horizontal, 16)
-            
-        }
-        .navigationTitle(contact.name)
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            viewModel.onAppear(contact: contact)
+            .navigationTitle(contact.name)
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                viewModel.onAppear(contact: contact)
+            }
         }
     }
-}
 
 struct ViewGeometry: View {
     var body: some View {
         GeometryReader { geometry in
             Color.clear
                 .preference(key: ViewSizeKey.self, value: geometry.size)
-            
         }
     }
 }
@@ -90,11 +90,7 @@ struct ViewSizeKey: PreferenceKey {
         print("new value is \(value)")
         value = nextValue()
     }
-    
-    
 }
-
-
 struct MessageRow: View {
     let message: Message
     
@@ -109,8 +105,6 @@ struct MessageRow: View {
                 .frame(maxWidth: 260, alignment: message.isMe ? .leading : .trailing)
             //.padding(.leading, message.isMe ? 0 : 50)
             //.padding(.trailing, message.isMe ? 50 : 0)
-            
-            
         }
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: message.isMe ? .leading : .trailing)
     }
