@@ -16,11 +16,26 @@ struct ChatView: View {
     
     @State var textSize: CGSize = .zero
     
+    @Namespace var bottomID
+    
     var body: some View {
         VStack {
-            ScrollView(showsIndicators: false) {
-                ForEach(viewModel.messages, id: \.self) { message in
-                    MessageRow(message: message)
+            ScrollViewReader { value in
+                ScrollView(showsIndicators: false) {
+                    ForEach(viewModel.messages, id: \.self) { message in
+                        MessageRow(message: message)
+                    }
+                    .onChange(of: viewModel.messages.count) { newValue in
+                        print("count is \(newValue)")
+                        withAnimation {
+                            value.scrollTo(bottomID)
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    
+                    Color.clear
+                        .frame(height: 1)
+                        .id(bottomID)
                 }
             }
             Spacer()
@@ -37,7 +52,7 @@ struct ChatView: View {
                             RoundedRectangle(cornerRadius: 24.0)
                                 .strokeBorder(Color(UIColor.separator), style: StrokeStyle(lineWidth: 1.0))
                         )
-                        .frame(maxHeight: (textSize.height + 50) > 100 ? 100 : textSize.height + 50)
+                        .frame(height: (textSize.height + 50) > 100 ? 100 : textSize.height + 50)
                     
                     Text(viewModel.text)
                         .opacity(0)
