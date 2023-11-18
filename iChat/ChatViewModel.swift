@@ -39,7 +39,9 @@ class ChatViewModel: ObservableObject {
         Firestore.firestore().collection("conversations")
             .document(fromId)
             .collection(contact.uuid)
-            .order(by: "timestamp", descending: false)
+            .order(by: "timestamp", descending: true)
+            .start(after: [self.messages.last?.timestamp ?? 9999999999])
+            .limit(to: 20)
             .addSnapshotListener{ querySnapshot, error in
                 if let error = error {
                     print("ERROR: fetching documents \(error)")
@@ -47,21 +49,25 @@ class ChatViewModel: ObservableObject {
                 }
                 if let changes = querySnapshot?.documentChanges {
                     for doc in changes {
-                        let document = doc.document
-                        print("Document is :\(document.documentID) \(document.data())")
-                        
-                        let message = Message(uuid: document.documentID,
-                                              text: document.data()["text"] as! String,
-                                              isMe: fromId == document.data()["fromId"] as! String)
-                        
-                        self.messages.append(message)
+                        if doc.type == .added {
+                            let document = doc.document
+                            print("Document is :\(document.documentID) \(document.data())")
+                            
+                            let message = Message(uuid: document.documentID,
+                                                  text: document.data()["text"] as! String,
+                                                  isMe: fromId == document.data()["fromId"] as! String,
+                                                  timestamp: document.data()["timestamp"] as! UInt)
+                            
+                            self.messages.append(message)
+                        }
                     }
                 }
             }
     }
     
     func sendMessage(contact: Contact) {
-        
+        let text = self.text
+        self.text = ""
         let fromId = Auth.auth().currentUser!.uid
         let timestamp = Date().timeIntervalSince1970
         
