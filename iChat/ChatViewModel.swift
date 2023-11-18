@@ -18,6 +18,9 @@ class ChatViewModel: ObservableObject {
     
     var myName = ""
     var myPhoto = ""
+    var inserting = false
+    var newCount = 0
+    let limit = 20
     
     func onAppear(contact: Contact) {
         let fromId = Auth.auth().currentUser!.uid
@@ -41,7 +44,7 @@ class ChatViewModel: ObservableObject {
             .collection(contact.uuid)
             .order(by: "timestamp", descending: true)
             .start(after: [self.messages.last?.timestamp ?? 9999999999])
-            .limit(to: 20)
+            .limit(to: limit)
             .addSnapshotListener{ querySnapshot, error in
                 if let error = error {
                     print("ERROR: fetching documents \(error)")
@@ -58,72 +61,82 @@ class ChatViewModel: ObservableObject {
                                                   isMe: fromId == document.data()["fromId"] as! String,
                                                   timestamp: document.data()["timestamp"] as! UInt)
                             
-                            self.messages.append(message)
+                            if self.inserting {
+                                self.messages.insert(message, at: 0)
+                            } else {
+                                self.messages.append(message)
+                            }
                         }
                     }
+                    print("-------")
+                    self.inserting = false
                 }
+                self.newCount = self.messages.count
             }
-    }
-    
-    func sendMessage(contact: Contact) {
-        let text = self.text
-        self.text = ""
-        let fromId = Auth.auth().currentUser!.uid
-        let timestamp = Date().timeIntervalSince1970
-        
-        Firestore.firestore().collection("conversations")
-            .document(fromId)
-            .collection(contact.uuid)
-            .addDocument(data: [
-                "text": text,
-                "fromId": fromId,
-                "toId": contact.uuid,
-                "timestamp": UInt(timestamp)
-            ]) { err in
-                if err != nil {
-                    print("ERROR: \(err!.localizedDescription)")
-                    return
-                    
-                }
-                
-                Firestore.firestore().collection("last-messages")
-                    .document(fromId)
-                    .collection("contacts")
-                    .document(contact.uuid)
-                    .setData([
-                        "uid": contact.uuid,
-                        "username": contact.name,
-                        "photoUrl": contact.profileUrl,
-                        "timestamp": UInt(timestamp),
-                        "lastMessage": self.text
-                    ])
-            }
-        Firestore.firestore().collection("conversations")
-            .document(contact.uuid)
-            .collection(fromId)
-            .addDocument(data: [
-                "text": text,
-                "fromId": fromId,
-                "toId": contact.uuid,
-                "timestamp": UInt(timestamp)
-            ]) { err in
-                if err != nil {
-                    print("ERROR: \(err!.localizedDescription)")
-                    return
-                    
-                }
-                Firestore.firestore().collection("last-messages")
-                    .document(contact.uuid)
-                    .collection("contacts")
-                    .document(fromId)
-                    .setData([
-                        "uid": fromId,
-                        "username": self.myName,
-                        "photoUrl": self.myPhoto,
-                        "timestamp": UInt(timestamp),
-                        "lastMessage": self.text
-                    ])
             }
         
+        func sendMessage(contact: Contact) {
+            let text = self.text
+            inserting = true
+            newCount = newCount + 1
+            self.text = ""
+            let fromId = Auth.auth().currentUser!.uid
+            let timestamp = Date().timeIntervalSince1970
+            
+            Firestore.firestore().collection("conversations")
+                .document(fromId)
+                .collection(contact.uuid)
+                .addDocument(data: [
+                    "text": text,
+                    "fromId": fromId,
+                    "toId": contact.uuid,
+                    "timestamp": UInt(timestamp)
+                ]) { err in
+                    if err != nil {
+                        print("ERROR: \(err!.localizedDescription)")
+                        return
+                        
+                    }
+                    
+                    Firestore.firestore().collection("last-messages")
+                        .document(fromId)
+                        .collection("contacts")
+                        .document(contact.uuid)
+                        .setData([
+                            "uid": contact.uuid,
+                            "username": contact.name,
+                            "photoUrl": contact.profileUrl,
+                            "timestamp": UInt(timestamp),
+                            "lastMessage": self.text
+                        ])
+                }
+            Firestore.firestore().collection("conversations")
+                .document(contact.uuid)
+                .collection(fromId)
+                .addDocument(data: [
+                    "text": text,
+                    "fromId": fromId,
+                    "toId": contact.uuid,
+                    "timestamp": UInt(timestamp)
+                ]) { err in
+                    if err != nil {
+                        print("ERROR: \(err!.localizedDescription)")
+                        return
+                        
+                    }
+                    Firestore.firestore().collection("last-messages")
+                        .document(contact.uuid)
+                        .collection("contacts")
+                        .document(fromId)
+                        .setData([
+                            "uid": fromId,
+                            "username": self.myName,
+                            "photoUrl": self.myPhoto,
+                            "timestamp": UInt(timestamp),
+                            "lastMessage": self.text
+                        ])
+                }
+            
+        }
     }
-}
+
