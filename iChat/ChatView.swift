@@ -48,6 +48,9 @@ struct ChatView: View {
                         .padding(.horizontal, 20)
                     }
                 }
+                .gesture(DragGesture().onChanged({ _ in
+                    UIApplication.shared.endEditing()
+                }))
                 .rotationEffect(Angle(degrees: 180))
                 .scaleEffect(x: -1.0, y: 1.0, anchor: .center)           
             }
