@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2DB181D59AF50F5FDA846025 /* Pods_iChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02FDA0E432314C33FC5DB9F1 /* Pods_iChat.framework */; };
+		7D3655192B0E5F4F0011DFF4 /* SignInRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3655182B0E5F4F0011DFF4 /* SignInRepository.swift */; };
+		7D36551B2B0E63A50011DFF4 /* SignUpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D36551A2B0E63A50011DFF4 /* SignUpRepository.swift */; };
 		7D39B9742B00FEA1007E0CF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B9732B00FEA1007E0CF0 /* ContentView.swift */; };
 		7D39B9762B00FEEF007E0CF0 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B9752B00FEEF007E0CF0 /* ContentViewModel.swift */; };
 		7D39B9782B010326007E0CF0 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D39B9772B010326007E0CF0 /* MessagesView.swift */; };
@@ -33,6 +35,8 @@
 		02FDA0E432314C33FC5DB9F1 /* Pods_iChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		683C6A913298B99235FF17D1 /* Pods-iChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChat.debug.xcconfig"; path = "Target Support Files/Pods-iChat/Pods-iChat.debug.xcconfig"; sourceTree = "<group>"; };
 		7D285742E23E7AD72E303524 /* Pods-iChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChat.release.xcconfig"; path = "Target Support Files/Pods-iChat/Pods-iChat.release.xcconfig"; sourceTree = "<group>"; };
+		7D3655182B0E5F4F0011DFF4 /* SignInRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRepository.swift; sourceTree = "<group>"; };
+		7D36551A2B0E63A50011DFF4 /* SignUpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRepository.swift; sourceTree = "<group>"; };
 		7D39B9732B00FEA1007E0CF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7D39B9752B00FEEF007E0CF0 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		7D39B9772B010326007E0CF0 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
@@ -96,25 +100,18 @@
 		7D5F94402AFFB78300590743 /* iChat */ = {
 			isa = PBXGroup;
 			children = (
+				7D67F9DD2B0D6DAA00FA80D2 /* Util */,
+				7D67F9DC2B0D6D5200FA80D2 /* Splash */,
+				7D67F9DB2B0D6D3500FA80D2 /* Model */,
+				7D67F9DA2B0D6CF200FA80D2 /* Massage */,
+				7D67F9D92B0D6CBB00FA80D2 /* Contact */,
+				7D67F9D82B0D6C9600FA80D2 /* Chat */,
+				7D67F9D72B0D6C6900FA80D2 /* Signup */,
+				7D67F9D62B0D6C4100FA80D2 /* Signin */,
 				7D5F94552AFFC7A200590743 /* GoogleService-Info.plist */,
 				7D5F94412AFFB78300590743 /* iChatApp.swift */,
-				7D5F94432AFFB78300590743 /* SignInView.swift */,
 				7D5F94452AFFB78500590743 /* Assets.xcassets */,
 				7D5F94472AFFB78500590743 /* Preview Content */,
-				7D5F944F2AFFBB3200590743 /* SignInViewModel.swift */,
-				7DB801B62B0021D40075E5A5 /* ImagePicker.swift */,
-				7D5F94512AFFC15100590743 /* SignUpView.swift */,
-				7D5F94532AFFC24D00590743 /* SignUpViewModel.swift */,
-				7D39B9732B00FEA1007E0CF0 /* ContentView.swift */,
-				7D39B9752B00FEEF007E0CF0 /* ContentViewModel.swift */,
-				7D39B9772B010326007E0CF0 /* MessagesView.swift */,
-				7D39B9792B0103A0007E0CF0 /* MessagesViewModel.swift */,
-				7D39B97B2B010A6C007E0CF0 /* ContactsView.swift */,
-				7D39B97D2B010ADE007E0CF0 /* ContactsViewModel.swift */,
-				7D39B97F2B010B60007E0CF0 /* Contact.swift */,
-				7D39B9812B013D8D007E0CF0 /* Message.swift */,
-				7D39B9832B013DEB007E0CF0 /* ChatViewModel.swift */,
-				7D39B9852B01407E007E0CF0 /* ChatView.swift */,
 			);
 			path = iChat;
 			sourceTree = "<group>";
@@ -125,6 +122,80 @@
 				7D5F94482AFFB78500590743 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7D67F9D62B0D6C4100FA80D2 /* Signin */ = {
+			isa = PBXGroup;
+			children = (
+				7D5F944F2AFFBB3200590743 /* SignInViewModel.swift */,
+				7D5F94432AFFB78300590743 /* SignInView.swift */,
+				7D3655182B0E5F4F0011DFF4 /* SignInRepository.swift */,
+			);
+			name = Signin;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		7D67F9D72B0D6C6900FA80D2 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				7D5F94532AFFC24D00590743 /* SignUpViewModel.swift */,
+				7D5F94512AFFC15100590743 /* SignUpView.swift */,
+				7D36551A2B0E63A50011DFF4 /* SignUpRepository.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		7D67F9D82B0D6C9600FA80D2 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				7D39B9832B013DEB007E0CF0 /* ChatViewModel.swift */,
+				7D39B9852B01407E007E0CF0 /* ChatView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		7D67F9D92B0D6CBB00FA80D2 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				7D39B97B2B010A6C007E0CF0 /* ContactsView.swift */,
+				7D39B97D2B010ADE007E0CF0 /* ContactsViewModel.swift */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		7D67F9DA2B0D6CF200FA80D2 /* Massage */ = {
+			isa = PBXGroup;
+			children = (
+				7D39B9772B010326007E0CF0 /* MessagesView.swift */,
+				7D39B9792B0103A0007E0CF0 /* MessagesViewModel.swift */,
+			);
+			path = Massage;
+			sourceTree = "<group>";
+		};
+		7D67F9DB2B0D6D3500FA80D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7D39B9812B013D8D007E0CF0 /* Message.swift */,
+				7D39B97F2B010B60007E0CF0 /* Contact.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7D67F9DC2B0D6D5200FA80D2 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				7D39B9732B00FEA1007E0CF0 /* ContentView.swift */,
+				7D39B9752B00FEEF007E0CF0 /* ContentViewModel.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		7D67F9DD2B0D6DAA00FA80D2 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7DB801B62B0021D40075E5A5 /* ImagePicker.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		E092F35D4A83782D5D960FB4 /* Pods */ = {
@@ -252,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D39B9802B010B60007E0CF0 /* Contact.swift in Sources */,
+				7D36551B2B0E63A50011DFF4 /* SignUpRepository.swift in Sources */,
 				7D39B9762B00FEEF007E0CF0 /* ContentViewModel.swift in Sources */,
 				7D39B97E2B010ADE007E0CF0 /* ContactsViewModel.swift in Sources */,
 				7D5F94442AFFB78300590743 /* SignInView.swift in Sources */,
@@ -263,6 +335,7 @@
 				7D5F94542AFFC24D00590743 /* SignUpViewModel.swift in Sources */,
 				7DB801B72B0021D40075E5A5 /* ImagePicker.swift in Sources */,
 				7D5F94522AFFC15100590743 /* SignUpView.swift in Sources */,
+				7D3655192B0E5F4F0011DFF4 /* SignInRepository.swift in Sources */,
 				7D39B97C2B010A6C007E0CF0 /* ContactsView.swift in Sources */,
 				7D5F94502AFFBB3200590743 /* SignInViewModel.swift in Sources */,
 				7D39B9842B013DEB007E0CF0 /* ChatViewModel.swift in Sources */,

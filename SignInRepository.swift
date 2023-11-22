@@ -8,23 +8,18 @@
 import Foundation
 import FirebaseAuth
 
-class SigInRepository {
+class SignInRepository {
     
     
-    func signIn () {
-        
-        Auth.auth().signIn(withEmail: email, password: password) {
-            
-            result, err in
+    func signIn(withEmail email: String, password: String, completion: @escaping (String?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { result, err in
             guard let user = result?.user, err == nil else {
-                self.formInvalid = true
-                self.alertText = err!.localizedDescription
-                print(err)
-                self.isLoading = false
+                print(err!)
+                completion(err!.localizedDescription)
                 return
             }
-            self.isLoading = false
             print("usuario logado \(user.uid)")
+            completion(nil)
             
         }
         
