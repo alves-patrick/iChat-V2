@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MessagesView: View {
-    @StateObject var viewModel = MessagesViewModel()
+    @StateObject var viewModel = MessagesViewModel(repo: MessageRepository())
     
     var body: some View {
         
