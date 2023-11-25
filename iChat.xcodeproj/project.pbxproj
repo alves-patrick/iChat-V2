@@ -31,6 +31,7 @@
 		7DB801B72B0021D40075E5A5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB801B62B0021D40075E5A5 /* ImagePicker.swift */; };
 		7DD9E83C2B12121200492D3C /* MessageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9E83B2B12121200492D3C /* MessageRepository.swift */; };
 		7DD9E83E2B121C5F00492D3C /* ContactRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9E83D2B121C5F00492D3C /* ContactRepository.swift */; };
+		7DD9E8402B121EEF00492D3C /* ChatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9E83F2B121EEF00492D3C /* ChatRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		7DB801B62B0021D40075E5A5 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7DD9E83B2B12121200492D3C /* MessageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRepository.swift; sourceTree = "<group>"; };
 		7DD9E83D2B121C5F00492D3C /* ContactRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRepository.swift; sourceTree = "<group>"; };
+		7DD9E83F2B121EEF00492D3C /* ChatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				7D39B9832B013DEB007E0CF0 /* ChatViewModel.swift */,
 				7D39B9852B01407E007E0CF0 /* ChatView.swift */,
+				7DD9E83F2B121EEF00492D3C /* ChatRepository.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D39B9802B010B60007E0CF0 /* Contact.swift in Sources */,
+				7DD9E8402B121EEF00492D3C /* ChatRepository.swift in Sources */,
 				7D36551B2B0E63A50011DFF4 /* SignUpRepository.swift in Sources */,
 				7D39B9762B00FEEF007E0CF0 /* ContentViewModel.swift in Sources */,
 				7D39B97E2B010ADE007E0CF0 /* ContactsViewModel.swift in Sources */,

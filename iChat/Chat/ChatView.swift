@@ -12,7 +12,7 @@ struct ChatView: View {
     let contact: Contact
     
     
-    @ObservedObject var viewModel = ChatViewModel()
+    @ObservedObject var viewModel = ChatViewModel(repo: ChatRepository())
     
     @State var textSize: CGSize = .zero
     
