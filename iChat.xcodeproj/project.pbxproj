@@ -29,6 +29,7 @@
 		7D5F94542AFFC24D00590743 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5F94532AFFC24D00590743 /* SignUpViewModel.swift */; };
 		7D5F94562AFFC7A300590743 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D5F94552AFFC7A200590743 /* GoogleService-Info.plist */; };
 		7DB801B72B0021D40075E5A5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB801B62B0021D40075E5A5 /* ImagePicker.swift */; };
+		7DD9E83C2B12121200492D3C /* MessageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9E83B2B12121200492D3C /* MessageRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		7D5F94532AFFC24D00590743 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		7D5F94552AFFC7A200590743 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7DB801B62B0021D40075E5A5 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		7DD9E83B2B12121200492D3C /* MessageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			children = (
 				7D39B9772B010326007E0CF0 /* MessagesView.swift */,
 				7D39B9792B0103A0007E0CF0 /* MessagesViewModel.swift */,
+				7DD9E83B2B12121200492D3C /* MessageRepository.swift */,
 			);
 			path = Massage;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				7D39B9742B00FEA1007E0CF0 /* ContentView.swift in Sources */,
 				7D5F94542AFFC24D00590743 /* SignUpViewModel.swift in Sources */,
 				7DB801B72B0021D40075E5A5 /* ImagePicker.swift in Sources */,
+				7DD9E83C2B12121200492D3C /* MessageRepository.swift in Sources */,
 				7D5F94522AFFC15100590743 /* SignUpView.swift in Sources */,
 				7D3655192B0E5F4F0011DFF4 /* SignInRepository.swift in Sources */,
 				7D39B97C2B010A6C007E0CF0 /* ContactsView.swift in Sources */,
