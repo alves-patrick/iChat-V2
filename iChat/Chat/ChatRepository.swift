@@ -33,8 +33,6 @@ class ChatRepository {
                     self.myPhoto = document["profileUrl"] as! String
                 }
             }
-        var messages: [Message] = []
-        
         Firestore.firestore().collection("conversations")
             .document(fromId)
             .collection(contact.uuid)
@@ -56,22 +54,12 @@ class ChatRepository {
                                                   text: document.data()["text"] as! String,
                                                   isMe: fromId == document.data()["fromId"] as! String,
                                                   timestamp: document.data()["timestamp"] as! UInt)
-                            
                             completion(message)
-                            
-     //                       if self.inserting {
-      //                          messages.insert(message, at: 0)
-     //                       } else {
-     //                           messages.append(message)
-    //                        }
                         }
                     }
                     print("-------")
-      //
                 }
-                
-      //          let newCount = messages.count
-       //         completion(messages, newCount)
+
             }
     }
     

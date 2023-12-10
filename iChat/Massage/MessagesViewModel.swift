@@ -22,7 +22,6 @@ class MessagesViewModel: ObservableObject {
     
     func getContacts() {
         repo.getContacts { contacts in
-            self.contacts.removeAll()
             self.contacts = contacts
         }
         
