@@ -26,7 +26,11 @@ struct MessagesView: View {
                 }
             }
             .onAppear {
+                viewModel.handEnabled(enabled: true)
                 viewModel.getContacts()
+            }
+            .onDisappear {
+                viewModel.handEnabled(enabled: false)
             }
             .navigationTitle("Mensagens")
             .toolbar {

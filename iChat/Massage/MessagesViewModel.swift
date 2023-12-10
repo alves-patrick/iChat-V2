@@ -16,15 +16,22 @@ class MessagesViewModel: ObservableObject {
     @Published var contacts: [Contact] = []
     
     private let repo: MessageRepository
+    
+    private var handEnabled = true
+    
     init(repo: MessageRepository) {
     self.repo = repo
     }
     
     func getContacts() {
         repo.getContacts { contacts in
-            self.contacts = contacts
+            if self.handEnabled {
+                self.contacts = contacts
+            }
         }
-        
+    }
+    func handEnabled(enabled: Bool) {
+        self.handEnabled = enabled
     }
     func logout() {
         repo.logout()

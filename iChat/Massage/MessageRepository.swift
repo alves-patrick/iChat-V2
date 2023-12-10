@@ -19,7 +19,6 @@ class MessageRepository {
             .addSnapshotListener { snapshot, error in
                 if let changes = snapshot?.documentChanges {
                     
-                    contacts.removeAll()
 
                     
                     for doc in changes {

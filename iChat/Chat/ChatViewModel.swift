@@ -29,7 +29,7 @@ class ChatViewModel: ObservableObject {
         repo.fetchChat(limit: limit, contact: contact, lastMessage:
             self.messages.last) { message in
             
-            if self.inserting {
+            if self.inserting || message.timestamp > self.messages.last?.timestamp ?? 0 {
                 self.messages.insert(message, at: 0)
             } else {
                 self.messages.append(message)
